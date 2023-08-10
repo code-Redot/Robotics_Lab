@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Robotics_Lab</string>
+    <string name="title_activity_login.xml">activity_login.xml</string>
+
+    <string name="hamburger_menu">Hamburger Menu</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+
+    <string name="nav_header_title">RoboticsLab</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="login">Login</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="add_product">Add Product</string>
+    <string name="delete_product">Delete Product</string>
+    <string name="product_name">Product Name</string>
+    <string name="product_stock">Product Stock</string>
+    <string name="product_msrp">Product MSRP</string>
+    <string name="product_manufacturer">Product Manufacturer</string>
+    <string name="product_description">Product Description</string>
+    <string name="product_useful_urls">Product Useful URLs</string>
+    <string name="upload_pictures">Upload Pictures</string>
+    <string name="upload_product_to_db">Upload Product to DB</string>
+</resources>

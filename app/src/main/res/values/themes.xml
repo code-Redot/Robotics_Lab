@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <style name="Theme.Robotics_Lab" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize attributes for the Robotics_Lab theme here -->
+    </style>
+</resources>

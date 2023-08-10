@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/btnAddProduct"
+        android:title="@string/add_product" />
+    <item
+        android:id="@+id/btnDeleteProduct"
+        android:title="@string/delete_product"/>
+</menu>

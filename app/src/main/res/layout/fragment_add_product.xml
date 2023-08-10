@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Product Name -->
+        <EditText
+            android:id="@+id/editTextProductName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/product_name" />
+
+        <!-- Product Stock -->
+        <EditText
+            android:id="@+id/editTextProductStock"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/product_stock" />
+
+        <!-- Product MSRP -->
+        <EditText
+            android:id="@+id/editTextProductMSRP"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/product_msrp" />
+
+        <!-- Product Manufacturer -->
+        <EditText
+            android:id="@+id/editTextProductManufacturer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/product_manufacturer" />
+
+        <!-- Product Description -->
+        <EditText
+            android:id="@+id/editTextProductDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/product_description" />
+
+        <!-- Product Useful URLs -->
+        <EditText
+            android:id="@+id/editTextProductUsefulUrls"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/product_useful_urls" />
+
+        <!-- Upload Pictures Button -->
+        <Button
+            android:id="@+id/buttonUploadPictures"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/upload_pictures" />
+
+        <!-- Upload Product to DB Button -->
+        <Button
+            android:id="@+id/buttonUploadToDB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/upload_product_to_db" />
+
+    </LinearLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
