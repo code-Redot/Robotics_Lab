@@ -15,6 +15,6 @@ class DeleteProductFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_delete_product, container, false)
+        return inflater.inflate(R.layout.fragment_del_product, container, false)
     }
 }

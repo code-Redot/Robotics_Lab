@@ -4,9 +4,8 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mobile_navigation.xml"
+    android:id="@+id/nav_graph"
     app:startDestination="@id/homeFragment">
-
 
     <fragment
         android:id="@+id/homeFragment"
@@ -16,22 +15,42 @@
             android:id="@+id/action_homeFragment_to_addProductsFragment"
             app:destination="@id/addProductsFragment" />
         <action
+            android:id="@+id/action_homeFragment_to_productFragment"
+            app:destination="@id/productFragment" />
+        <action
             android:id="@+id/action_homeFragment_to_deleteProductFragment"
             app:destination="@id/deleteProductFragment" />
     </fragment>
+
+<fragment
+        android:id="@+id/productFragment"
+        android:name="com.example.robotics_lab.ProductFragment"
+        android:label="ProductFragment" >
+    <action
+        android:id="@+id/action_productFragment_to_homeFragment"
+        app:destination="@id/homeFragment" />
+</fragment>
+
+
 
     <fragment
         android:id="@+id/addProductsFragment"
         android:name="com.example.robotics_lab.AddProductsFragment"
         android:label="Add Products"
         tools:layout="@layout/fragment_add_product" >
+        <action
+            android:id="@+id/action_addProductsFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/deleteProductFragment"
         android:name="com.example.robotics_lab.DeleteProductFragment"
         android:label="Delete Product"
-        tools:layout="@layout/fragment_delete_product">
+        tools:layout="@layout/fragment_del_product">
+        <action
+            android:id="@+id/action_deleteProductFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
 
 

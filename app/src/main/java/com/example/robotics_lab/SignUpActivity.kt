@@ -57,7 +57,8 @@ class SignUpActivity : AppCompatActivity() {
                     val user = auth.currentUser
                     user?.let {
                         val userId = user.uid
-                        val newUser = User(userId, name, email, password, privilegeLevel)
+                        val userIdWithPrefix = "User:$userId"
+                        val newUser = User(userIdWithPrefix, name, email, password, privilegeLevel)
 
                         // Upload the user data to Firebase Realtime Database
                         usersRef.child(userId).setValue(newUser)
