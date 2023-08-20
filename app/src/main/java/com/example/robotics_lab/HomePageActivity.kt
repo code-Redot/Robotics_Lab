@@ -1,9 +1,13 @@
 package com.example.robotics_lab
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -36,13 +40,14 @@ class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
 
     private lateinit var navHostFragment: NavHostFragment
     private lateinit var navController: NavController
-    private lateinit var bottomNavigation: BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        // Initialize FirebaseApp and set the content view
+        // Initialize FirebaseApp
         FirebaseApp.initializeApp(this)
+        setContentView(R.layout.activity_home_page)
+
+        // Inflate the binding layout
         binding = ActivityHomePageBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -50,52 +55,15 @@ class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
         navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
 
+
         // Load user data and set up UI
         loadUserDataAndSetupUI()
 
-        // Load items from database
-        val productsRef = FirebaseDatabase.getInstance().getReference("products")
-        productsRef.addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    val productDetailsList = mutableListOf<ProductDetails>()
-                    for (productSnapshot in dataSnapshot.children) {
-                        val productDetails = productSnapshot.getValue(ProductDetails::class.java)
-                        if (productDetails != null) {
-                            productDetailsList.add(productDetails)
-                        }
-                    }
-
-                    // Locate the existing RecyclerView in your layout
-                    val recyclerView: RecyclerView = findViewById(R.id.recyclerViewProductList)
-
-                    // Set layout manager
-                    recyclerView.layoutManager = LinearLayoutManager(this@HomePageActivity)
-
-                    // Create the adapter with onItemClick lambda
-                    val productAdapter = ProductAdapter(productDetailsList) { productId ->
-                        val bundle = Bundle()
-                        bundle.putString("productId", productId.toString())
-
-                        val productFragment = ProductFragment()
-                        productFragment.arguments = bundle
-
-                        supportFragmentManager.beginTransaction()
-                            .replace(R.id.fragment_content, productFragment)
-                            .addToBackStack(null)
-                            .commit()
-                    }
-
-                    // Set the adapter
-                    recyclerView.adapter = productAdapter
-                }
-            }
-
-            override fun onCancelled(databaseError: DatabaseError) {
-                // Handle error
-            }
-        })
+        // Find the Toolbar and set it as the support action bar
+        val toolbar: Toolbar? = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
     }
+
 
     private fun loadUserDataAndSetupUI() {
         val currentUser = FirebaseAuth.getInstance().currentUser
@@ -113,14 +81,13 @@ class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
                             val sharedPreferences = getSharedPreferences("MyAppPreferences", Context.MODE_PRIVATE)
                             sharedPreferences.edit().putInt("userPrivilege", userPrivilege).apply()
 
-                            // Set up the custom app bar, navigation drawer, and bottom navigation
+                            // Set up the UI components
                             setupUI()
 
                             // Set up the initial fragment (HomeFragment) using NavController
                             if (userPrivilege == 0) {
                                 navController.navigate(R.id.homeFragment)
                             }
-
                         } else {
                             // Error: User data not found
                             handleUserDataError()
@@ -152,23 +119,6 @@ class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
     }
 
     private fun setupUI() {
-        // Find the bottom navigation view
-        bottomNavigation = findViewById(R.id.bottomNavigation)
-
-        if (userPrivilege == 0) {
-            // Initially hide the bottom navigation
-            bottomNavigation.visibility = View.GONE
-
-            // Set up the bottom navigation listener
-            bottomNavigation.setOnNavigationItemSelectedListener { item ->
-                navigateToDestination(item.itemId)
-                true
-            }
-        } else {
-            // Hide the bottom navigation bar
-            bottomNavigation.visibility = View.GONE
-        }
-
         // Set up the custom app bar
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
@@ -178,6 +128,29 @@ class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
         // Set up the navigation drawer
         drawerLayout = findViewById(R.id.drawerLayout)
         val navigationView: NavigationView = findViewById(R.id.navigationView)
+
+        // Fetch the current signed-in user's data and update the views
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        if (currentUser != null) {
+            val userId = currentUser.uid
+            val userRef = FirebaseDatabase.getInstance().getReference("users").child(userId)
+            userRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    if (dataSnapshot.exists()) {
+                        val user = dataSnapshot.getValue(User::class.java)
+                        if (user != null) {
+                            // Update the views with the user's data
+                            // Note: You can add views to your layout for user information and update them here
+                        }
+                    }
+                }
+
+                override fun onCancelled(databaseError: DatabaseError) {
+                    // Handle error
+                }
+            })
+        }
+
         navigationView.setNavigationItemSelectedListener(this)
 
         // Inflate the menu based on userPrivilege
@@ -191,6 +164,7 @@ class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
             val appBarConfiguration = AppBarConfiguration(navController.graph, drawerLayout)
             setupActionBarWithNavController(navController, appBarConfiguration)
         }
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -210,31 +184,23 @@ class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
 
     private fun navigateToDestination(itemId: Int) {
         val fragment: Fragment = when (itemId) {
-            //R.id.nav_item1 -> {
-            // Create and return Fragment1 instance
-            //}
-            //R.id.nav_item2 -> {
-            // Create and return Fragment2 instance
-            //}
-//            R.id.btnAddProduct -> {
-//                 Create and return AddProductsFragment instance
-//                AddProductsFragment()
-//            }
-            R.id.btnDeleteProduct -> {
-                // Create and return DeleteProductFragment instance
-                DeleteProductFragment()
+            R.id.nav_add_product -> {
+                // Create and return AddProductsFragment instance
+                AddProductsFragment()
             }
             else -> {
-                // Default fragment (HomeFragment)
+                // Handle other navigation items
                 HomeFragment()
             }
         }
 
-        // Replace the content of the fragment_content container with the selected fragment
+        // Replace the content of the fragment_container with the selected fragment
         supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_content, fragment)
+            .replace(R.id.fragment_container, fragment)
             .commit()
     }
+
+// ...
 
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
         // Handle navigation drawer item clicks and bottom navigation clicks
@@ -243,14 +209,25 @@ class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
                 // Create and return AddProductsFragment instance
                 val fragment = AddProductsFragment()
                 supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_content, fragment)
+                    .replace(R.id.fragment_container, fragment)
                     .addToBackStack(null)
                     .commit()
+            }
+            R.id.action_log_out -> {
+                // Handle the "Log Out" action here
+                // For example, you can sign the user out and navigate to the login screen
+                FirebaseAuth.getInstance().signOut()
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
+                finish()
+                return true
             }
             else -> {
                 // Handle other navigation items
                 navigateToDestination(menuItem.itemId)
             }
+
+
         }
 
         // Close the drawer after handling the item click

@@ -18,7 +18,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         auth = FirebaseAuth.getInstance()
         database = FirebaseDatabase.getInstance()
-        setContentView(R.layout.activity_splash)
+        setContentView(R.layout.activity_splash_screen)
 
         // Set a delay for the splash screen and navigate to the login screen
         Handler().postDelayed({

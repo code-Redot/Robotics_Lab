@@ -15,19 +15,27 @@
     <string name="sign_up">Sign Up</string>
     <string name="add_product">Add Product</string>
     <string name="delete_product">Delete Product</string>
+    <string name="edit_product">Edit Product</string>
+    <string name="upload_pictures">Upload Pictures</string>
+    <string name="upload_product_to_db">Upload Product to DB</string>
+
+
     <string name="product_name">Product Name</string>
     <string name="product_manufacturer">Product Manufacturer</string>
     <string name="product_description">Product Description</string>
     <string name="product_useful_urls">Product Useful URLs</string>
-    <string name="upload_pictures">Upload Pictures</string>
-    <string name="upload_product_to_db">Upload Product to DB</string>
-
     <string name="product_stock">Stock: %1$s</string>
     <string name="product_msrp">MSRP: %1$s</string>
     <string name="product_picture">Product_Picture</string>
+
+
     <string name="toolbar_title">Toolbar Title</string>
     <string name="menu_btn">Menu_Btn</string>
-    <string name="edit_product" />
+    <string name="log_out">Log Out</string>
+    <string name="are_you_sure_you_want_to_delete_this_product">Are you sure you want to delete this product?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="save_changes">Save Changes</string>
 
 
 </resources>
