@@ -40,19 +40,32 @@
 
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
-    <!-- ConstraintLayout for fragment content -->
+
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/fragment_container"
+        android:id="@+id/content_host"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="60dp"
         app:layout_anchor="@+id/constraintLayout"
         app:layout_anchorGravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="@id/nav_host_fragment">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/fragment_container"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_anchorGravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- NavigationView for the navigation drawer (from Version 2) -->
+
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigationView"
         android:layout_width="wrap_content"

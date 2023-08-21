@@ -32,6 +32,7 @@ import com.google.firebase.database.ValueEventListener
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
+
 class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var drawerLayout: DrawerLayout
@@ -45,16 +46,14 @@ class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
         super.onCreate(savedInstanceState)
         // Initialize FirebaseApp
         FirebaseApp.initializeApp(this)
-        setContentView(R.layout.activity_home_page)
 
-        // Inflate the binding layout
+        // Initialize the binding layout
         binding = ActivityHomePageBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         // Find the NavHostFragment and NavController
         navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
-
 
         // Load user data and set up UI
         loadUserDataAndSetupUI()
@@ -63,7 +62,6 @@ class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
         val toolbar: Toolbar? = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
     }
-
 
     private fun loadUserDataAndSetupUI() {
         val currentUser = FirebaseAuth.getInstance().currentUser
@@ -165,7 +163,13 @@ class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
             setupActionBarWithNavController(navController, appBarConfiguration)
         }
 
+        // Fill the fragment_container with HomeFragment
+        val homeFragment = HomeFragment()
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, homeFragment)
+            .commit()
     }
+
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
@@ -194,13 +198,11 @@ class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
             }
         }
 
-        // Replace the content of the fragment_container with the selected fragment
+        // Replace the content of the fragment_container within content_host
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, fragment)
             .commit()
     }
-
-// ...
 
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
         // Handle navigation drawer item clicks and bottom navigation clicks
@@ -226,8 +228,6 @@ class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
                 // Handle other navigation items
                 navigateToDestination(menuItem.itemId)
             }
-
-
         }
 
         // Close the drawer after handling the item click

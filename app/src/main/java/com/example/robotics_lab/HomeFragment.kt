@@ -66,7 +66,6 @@ class HomeFragment : Fragment() {
         transaction.commit()
     }
 
-
     private fun loadProducts() {
         database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -82,12 +81,8 @@ class HomeFragment : Fragment() {
 
             override fun onCancelled(error: DatabaseError) {
                 // Handle database error
-                Log.e(TAG, "Database error: ${error.message}")
+                // You can add error handling code here
             }
         })
-    }
-
-    companion object {
-        private const val TAG = "HomeFragment"
     }
 }
