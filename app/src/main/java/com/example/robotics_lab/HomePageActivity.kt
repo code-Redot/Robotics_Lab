@@ -138,6 +138,16 @@ class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
                         val user = dataSnapshot.getValue(User::class.java)
                         if (user != null) {
                             // Update the views with the user's data
+                            val headerView = navigationView.getHeaderView(0)
+                            val titleTextView = headerView.findViewById<TextView>(R.id.titleTextView)
+                            val subtitleTextView = headerView.findViewById<TextView>(R.id.subtitleTextView)
+
+                            // Set "name" from the database as the titleTextView text
+                            titleTextView.text = user.name
+
+                            // Set "email" from the database as the subtitleTextView text
+                            subtitleTextView.text = user.email
+
                             // Note: You can add views to your layout for user information and update them here
                         }
                     }
@@ -169,6 +179,7 @@ class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
             .replace(R.id.fragment_container, homeFragment)
             .commit()
     }
+
 
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
