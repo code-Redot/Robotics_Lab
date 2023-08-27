@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="60dp">
+
+    <LinearLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Equipment Name -->
+        <EditText
+            android:id="@+id/editTextEquipmentName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/equipment_name"
+            />
+
+        <!-- Manufacturer/Company Name -->
+        <EditText
+            android:id="@+id/editTextManufacturer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/manufacturer_company_name"
+            />
+
+        <!-- Model Number -->
+        <EditText
+            android:id="@+id/editTextModelNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/model_number"
+            />
+
+        <!-- Equipment Description -->
+        <EditText
+            android:id="@+id/editTextEquipmentDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/equipment_description"
+            />
+
+        <!-- Photo Upload Buttons -->
+        <Button
+            android:id="@+id/btnUploadPhoto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/upload_photos"
+            />
+
+        <!-- Submit Button -->
+        <Button
+            android:id="@+id/btnSubmitEquipment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/submit"
+            />
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

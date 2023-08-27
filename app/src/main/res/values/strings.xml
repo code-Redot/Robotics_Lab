@@ -36,6 +36,19 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="save_changes">Save Changes</string>
-
+    <string name="equipment_name">Equipment Name</string>
+    <string name="manufacturer_company_name">Manufacturer/Company Name</string>
+    <string name="model_number">Model Number</string>
+    <string name="equipment_description">Equipment Description</string>
+    <string name="upload_photos">Upload Photos</string>
+    <string name="submit">Submit</string>
+    <string name="add_equipment">Add Equipment</string>
+    <string name="products">Products</string>
+    <string name="equipment">Equipment</string>
+    <string name="equipment_image">Equipment pic</string>
+    <string name="equipment_name_placeholder">equipment name</string>
+    <string name="manufacturer_placeholder">manufacturer</string>
+    <string name="model_number_placeholder">model number</string>
+    <string name="equipment_description_placeholder">equipment description</string>
 
 </resources>

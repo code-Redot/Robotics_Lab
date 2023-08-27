@@ -193,15 +193,44 @@ class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
                 }
                 true
             }
+            R.id.nav_add_product -> {
+                // Handle "Add Product" selection
+                val fragment = AddProductsFragment()
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.content_host, fragment)
+                    .commit()
+                true
+            }
+            R.id.nav_add_equipment -> {
+                // Handle "Add Equipment" selection
+                val fragment = AddEquipmentFragment()
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.content_host, fragment)
+                    .commit()
+                true
+            }
+            R.id.action_log_out -> {
+                // Handle "Log Out" selection
+                FirebaseAuth.getInstance().signOut()
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
+                finish()
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
+
 
     private fun navigateToDestination(itemId: Int) {
         val fragment: Fragment = when (itemId) {
             R.id.nav_add_product -> {
                 // Create and return AddProductsFragment instance
                 AddProductsFragment()
+            }
+            R.id.nav_add_equipment -> {
+                // Create and return AddEquipmentFragment instance
+                AddEquipmentFragment()
             }
             else -> {
                 // Handle other navigation items
@@ -221,6 +250,14 @@ class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
             R.id.nav_add_product -> {
                 // Create and return AddProductsFragment instance
                 val fragment = AddProductsFragment()
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, fragment)
+                    .addToBackStack(null)
+                    .commit()
+            }
+            R.id.nav_add_equipment -> {
+                // Create and return AddEquipmentFragment instance
+                val fragment = AddEquipmentFragment()
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.fragment_container, fragment)
                     .addToBackStack(null)
